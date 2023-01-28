@@ -1,46 +1,34 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
-
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080',
-        realm: 'taller-keycloak',
-        clientId: 'taller-frontend'
-      },
-      initOptions: {
-        // onLoad: 'login-required',
-        onLoad: 'check-sso',
-        // flow: 'standard',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html'
-      },
-      // loadUserProfileAtStartUp: true
-    });
-}
+import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    KeycloakAngularModule
+    HttpClientModule,
+    FormsModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://localhost:8079/person'],
+        sendAccessToken: true
+    }
+    })
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService]
-    }
-  ],
+    provideHttpClient(),
+    provideOAuthClient()
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

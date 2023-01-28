@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
-import { KeycloakProfile } from 'keycloak-js';
+import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +9,31 @@ import { KeycloakProfile } from 'keycloak-js';
 export class AppComponent {
   title = 'taller-front';
 
-  public isLoggedIn = false;
-  public userProfile: KeycloakProfile | null = null;
-
-  constructor(private readonly keycloak: KeycloakService) {}
-
-  public async ngOnInit() {
-    this.isLoggedIn = await this.keycloak.isLoggedIn();
-
-    if (this.isLoggedIn) {
-      this.userProfile = await this.keycloak.loadUserProfile();
-    }
+  constructor(private oauthService: OAuthService){
+    this.configure();
   }
 
-  public login() {
-    this.keycloak.login();
+  authConfig: AuthConfig = {
+    issuer: 'http://localhost:8080/realms/taller-keycloak',
+    redirectUri: window.location.origin,
+    clientId: 'taller-frontend',
+    responseType: 'code',
+    scope: 'openid profile email offline_access',
+    showDebugInformation: true,
+  };
+
+  configure(): void{
+    this.oauthService.configure(this.authConfig);
+    this.oauthService.tokenValidationHandler = new NullValidationHandler;
+    this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.loadDiscoveryDocument().then(()=>this.oauthService.tryLogin());
   }
 
-  public logout() {
-    this.keycloak.logout();
+  login(): void{
+    this.oauthService.initImplicitFlowInternal();
+  }
+
+  logout(): void{
+    this.oauthService.logOut();
   }
 }
