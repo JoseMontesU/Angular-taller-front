@@ -1,4 +1,7 @@
-<button (click)="login()">Login</button>
-<button (click)="logout()">Logout</button>
+<app-menu
+  [isLogged]="isLogged"
+  [isAdmin]="isAdmin"
+  [username]="username"
+></app-menu>
 
 <router-outlet></router-outlet>

@@ -7,11 +7,21 @@ import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
+import { ListaComponent } from './user/lista/lista.component';
+import { DetailComponent } from './user/detail/detail.component';
+import { CreateComponent } from './user/create/create.component';
+import { UpdateComponent } from './user/update/update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    MenuComponent,
+    ListaComponent,
+    DetailComponent,
+    CreateComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +30,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['http://localhost:8079/person'],
+        allowedUrls: ['/person'],
         sendAccessToken: true
     }
     })
