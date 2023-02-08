@@ -8,7 +8,7 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  userURL = '/person/';
+  userURL = 'http://localhost:8079/person/';
   httpOptions = { headers: new HttpHeaders({'Content-Type' : 'application/json', 
   'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`})};
 
@@ -26,7 +26,11 @@ export class UserService {
     return this.httpClient.post<any>(this.userURL, user, this.httpOptions);
   }
 
-  public update(id: number, foo: User): Observable<any> {
-    return this.httpClient.put<any>(this.userURL + id, foo, this.httpOptions);
+  public update(id: number, user: User): Observable<any> {
+    return this.httpClient.put<any>(this.userURL + id, user, this.httpOptions);
+  }
+
+  public delete(id: number): Observable<any> {
+    return this.httpClient.delete<any>(this.userURL + id, this.httpOptions);
   }
 }

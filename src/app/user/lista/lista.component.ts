@@ -18,12 +18,17 @@ export class ListaComponent implements OnInit{
   }
 
   loadUsers(): void {
-    this.userService.list().subscribe(
-      data => {
-        this.users = data;
-      },
-      err => console.log(err)
-    );
+    this.userService.list().subscribe(data => this.users=data);
+  }
+
+  onDelete(id: number): void {
+    this.userService.delete(id).subscribe(
+        err => console.log(`error: ${err}`),
+        () => {
+          this.loadUsers();
+          console.log(`item with id "${id} was deleted"`);
+        }
+      );
   }
 
 }

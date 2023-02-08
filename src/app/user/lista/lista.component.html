@@ -14,17 +14,23 @@
         <th>{{ user.id }}</th>
         <td>{{ user.name }}</td>
         <td>
-          <button class="btn btn-outline-primary">
+          <button
+            class="btn btn-outline-primary"
+            routerLink="/detail/{{ user.id }}"
+          >
             <i class="far fa-eye"></i> Ver
           </button>
         </td>
         <td>
-          <button class="btn btn-outline-warning">
+          <button
+            class="btn btn-outline-warning"
+            routerLink="/update/{{ user.id }}"
+          >
             <i class="far fa-edit"></i> Editar
           </button>
         </td>
         <td>
-          <button class="btn btn-outline-danger">
+          <button class="btn btn-outline-danger" (click)="onDelete(user.id!)">
             <i class="far fa-trash-alt"></i> Eliminar
           </button>
         </td>

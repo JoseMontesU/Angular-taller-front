@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthConfig, NullValidationHandler, OAuthService } from 'angular-oauth2-oidc';
 import { MessageService } from './services/message.service';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,11 @@ export class AppComponent {
   isLogged: boolean = false;
   isAdmin: boolean = false;
 
-  constructor(private oauthService: OAuthService, private messageService: MessageService){
+  constructor(
+    private oauthService: OAuthService, 
+    private messageService: MessageService,
+    private loginService: LoginService
+    ){
     this.configure();
   }
 
@@ -34,28 +39,12 @@ export class AppComponent {
     this.oauthService.loadDiscoveryDocument().then(() => this.oauthService.tryLogin())
     .then(()=>{
       if(this.oauthService.getIdentityClaims()){
-        this.isLogged = this.getIsLogged();
-        this.isAdmin = this.getIsAdmin();
-        this.username = this.getUserName();
-        this.messageService.sendMessage(this.getUserName());
+        this.isLogged = this.loginService.getIsLogged();
+        this.isAdmin = this.loginService.getIsAdmin();
+        this.username = this.loginService.getUserName();
+        this.messageService.sendMessage(this.loginService.getUserName());
       }
     });
   }
 
-  public getIsLogged(): boolean{
-    return (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken());
-  }
-
-  public getUserName(): string{
-    return this.oauthService.getIdentityClaims()[`preferred_username`];
-  }
-
-  public getIsAdmin(): boolean {
-    const token = this.oauthService.getAccessToken();
-    const payload = token.split('.')[1];
-    const payloadDecodeJson = atob(payload);
-    const payloadDecoded = JSON.parse(payloadDecodeJson);
-    console.log(payloadDecoded.realm_access.roles);
-    return payloadDecoded.realm_access.roles.indexOf('realm-admin') !== -1;
-  }
 }

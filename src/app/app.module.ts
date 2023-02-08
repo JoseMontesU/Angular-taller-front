@@ -30,7 +30,7 @@ import { UpdateComponent } from './user/update/update.component';
     FormsModule,
     OAuthModule.forRoot({
       resourceServer: {
-        allowedUrls: ['/person'],
+        allowedUrls: ['http://localhost:8079'],
         sendAccessToken: true
     }
     })
