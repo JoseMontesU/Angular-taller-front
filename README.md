@@ -1,4 +1,5 @@
-# TallerFront
+# Angular-Taller- Front
+Angular - authorization, authentication with keycloak and oauth2
 
 ![Screenshot 2023-02-08 104031](https://user-images.githubusercontent.com/88306247/217581076-24b5e997-299e-4a79-843d-a82ab369d486.jpg)
 
