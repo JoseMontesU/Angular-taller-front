@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { Person } from 'src/app/models/person';
+import { PersonService } from 'src/app/services/person.service';
+
 
 @Component({
   selector: 'app-create',
@@ -10,11 +11,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CreateComponent implements OnInit{
   
-  user!: User;
+  user!: Person;
   userName!: string;
 
   constructor(
-    private userService: UserService,
+    private personService: PersonService,
     private router: Router
   ) { }
 
@@ -22,8 +23,8 @@ export class CreateComponent implements OnInit{
   }
 
   onCreate(): void {
-    this.user = new User(0, this.userName);
-    this.userService.create(this.user).subscribe(
+    this.user = new Person(0, this.userName);
+    this.personService.create(this.user).subscribe(
       data => {
         console.log(data);
         this.volver();

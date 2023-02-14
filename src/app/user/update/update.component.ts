@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { Person } from 'src/app/models/person';
+import { PersonService } from 'src/app/services/person.service';
+
 
 @Component({
   selector: 'app-update',
@@ -10,17 +11,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UpdateComponent implements OnInit{
   
-  user!: User;
+  user!: Person;
 
   constructor(
-    private userService: UserService,
+    private personService: PersonService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
   
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.userService.detail(id).subscribe(
+    this.personService.detail(id).subscribe(
       data => {
         this.user = data;
       },
@@ -30,7 +31,7 @@ export class UpdateComponent implements OnInit{
   
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.userService.update(id,this.user).subscribe(
+    this.personService.update(id,this.user).subscribe(
       data => {
         console.log(data);
         this.volver();

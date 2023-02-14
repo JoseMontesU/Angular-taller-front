@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { Person } from 'src/app/models/person';
+import { PersonService } from 'src/app/services/person.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,20 +10,24 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ListaComponent implements OnInit{
 
-  users: User[] = [];
+  users: Person[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private personService: PersonService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
   loadUsers(): void {
-    this.userService.list().subscribe(data => this.users=data);
+    this.personService.list().subscribe(data => this.users=data);
+    this.userService.list().subscribe(x=>{
+      console.log(x);
+    })
   }
 
   onDelete(id: number): void {
-    this.userService.delete(id).subscribe(
+    this.personService.delete(id).subscribe(
         err => console.log(`error: ${err}`),
         () => {
           this.loadUsers();
