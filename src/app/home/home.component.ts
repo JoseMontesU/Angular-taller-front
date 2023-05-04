@@ -14,12 +14,14 @@ export class HomeComponent implements OnInit{
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.messageService.getMessage().subscribe( res => {
-      console.log('receiving message');
-      this.username = res[`text`];
-      this.isLogging = false;
-    },
-    err => console.log(err));
+    this.messageService.getMessage().subscribe({
+      next: res => {
+        console.log("reciving message");
+        this.username = res[`text`];
+        this.isLogging = false;
+      },
+      error: err => console.log(err)
+    });
   }
 
 

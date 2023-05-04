@@ -10,7 +10,7 @@ import { PersonService } from 'src/app/services/person.service';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit{
-  
+
   user!: Person;
 
   constructor(
@@ -18,26 +18,25 @@ export class UpdateComponent implements OnInit{
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
-  
+
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.personService.detail(id).subscribe(
-      data => {
-        this.user = data;
-      },
-      err => console.log(err)
+    this.personService.detail(id).subscribe({
+      next: data => this.user=data,
+      error: err => console.log(err)
+    }
     );
   }
-  
+
   onUpdate(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.personService.update(id,this.user).subscribe(
-      data => {
-        console.log(data);
-        this.volver();
+    this.personService.update(id,this.user).subscribe({
+      next: data => {
+      console.log(data);
+      this.volver();
       },
-      err => console.log(err)
-    );
+      error: err => console.log(err)
+    })
   }
 
   volver(): void {

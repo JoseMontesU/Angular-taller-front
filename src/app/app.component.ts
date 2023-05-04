@@ -14,9 +14,10 @@ export class AppComponent {
   username: string = '';
   isLogged: boolean = false;
   isAdmin: boolean = false;
+  roles: string[] = [];
 
   constructor(
-    private oauthService: OAuthService, 
+    private oauthService: OAuthService,
     private messageService: MessageService,
     private loginService: LoginService
     ){
@@ -24,7 +25,7 @@ export class AppComponent {
   }
 
   authConfig: AuthConfig = {
-    issuer: 'http://localhost:8080/auth/realms/taller-keycloak',
+    issuer: 'http://localhost:8080/realms/taller-keycloak',
     redirectUri: window.location.origin,
     clientId: 'taller-frontend',
     responseType: 'code',
@@ -42,6 +43,8 @@ export class AppComponent {
         this.isLogged = this.loginService.getIsLogged();
         this.isAdmin = this.loginService.getIsAdmin();
         this.username = this.loginService.getUserName();
+        this.roles = this.loginService.getRoles();
+        console.log(this.roles);
         this.messageService.sendMessage(this.loginService.getUserName());
       }
     });
