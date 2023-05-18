@@ -12,6 +12,8 @@ import { ListaComponent } from './user/lista/lista.component';
 import { DetailComponent } from './user/detail/detail.component';
 import { CreateComponent } from './user/create/create.component';
 import { UpdateComponent } from './user/update/update.component';
+import {PagesModule} from "./pages/pages.module";
+import { NavbarVerticalComponent } from './navbar-vertical/navbar-vertical.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { UpdateComponent } from './user/update/update.component';
     DetailComponent,
     CreateComponent,
     UpdateComponent,
+    NavbarVerticalComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { UpdateComponent } from './user/update/update.component';
         allowedUrls: ['http://localhost:8079'],
         sendAccessToken: true
     }
-    })
+    }),
+    PagesModule
   ],
   providers: [
     provideHttpClient(),

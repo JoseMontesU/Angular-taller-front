@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row d-flex d-md-block flex-nowrap wrapper">
+    <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+      <div class="list-group border-0 text-center text-md-left">
+        <p class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-home"></i> <span class="d-none d-md-inline">Menú de opciones</span></p>
+        <a routerLink="/registrar" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-clipboard"></i> <span class="d-none d-md-inline">Registrar Cita</span></a>
+        <a routerLink="/proxima-cita" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-calendar-alt"></i> <span class="d-none d-md-inline">Proximas Citas</span></a>
+        <a routerLink="/historial" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Historial de citas</span></a>
+        <a routerLink="/especialidades" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-stethoscope"></i> <span class="d-none d-md-inline">Especialidades</span></a>
+        <a routerLink="/lista-pacientes" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-user-injured"></i> <span class="d-none d-md-inline">Lista de Pacientes</span></a>
+        <a routerLink="/historial-pacientes" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-envelope"></i> <span class="d-none d-md-inline">Historial de Citas por Paciente</span></a>
+        <a routerLink="/lista-medicos" class="nav-link list-group-item d-inline-block collapsed"><i class="fas fa-user-md"></i> <span class="d-none d-md-inline">Lista de Médicos</span></a>
+        <a routerLink="/about" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-address-card"></i> <span class="d-none d-md-inline">Quienes somos</span></a>
+        <a routerLink="/historial" class="nav-link list-group-item d-inline-block collapsed"><i class="fa fa-phone"></i> <span class="d-none d-md-inline">Contactos</span></a>
+      </div>
+    </div>
+    <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
