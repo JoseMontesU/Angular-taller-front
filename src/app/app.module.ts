@@ -14,6 +14,7 @@ import { CreateComponent } from './user/create/create.component';
 import { UpdateComponent } from './user/update/update.component';
 import {PagesModule} from "./pages/pages.module";
 import { NavbarVerticalComponent } from './navbar-vertical/navbar-vertical.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NavbarVerticalComponent } from './navbar-vertical/navbar-vertical.compo
         sendAccessToken: true
     }
     }),
-    PagesModule
+    PagesModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideHttpClient(),

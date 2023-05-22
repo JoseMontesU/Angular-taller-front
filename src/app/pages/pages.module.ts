@@ -8,10 +8,23 @@ import { ListaPacientesComponent } from './lista-pacientes/lista-pacientes.compo
 import { HistorialByPacientesComponent } from './historial-by-pacientes/historial-by-pacientes.component';
 import { ListaMedicosComponent } from './lista-medicos/lista-medicos.component';
 import { AboutComponent } from './about/about.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
 @NgModule({
+  providers:[
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+  ],
   declarations: [
     HistorialCitasComponent,
     RegistrarCitasComponent,
@@ -23,7 +36,17 @@ import { AboutComponent } from './about/about.component';
     AboutComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class PagesModule { }

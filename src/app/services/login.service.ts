@@ -38,4 +38,12 @@ export class LoginService {
     const payloadDecoded = JSON.parse(payloadDecodeJson);
     return payloadDecoded.realm_access.roles;
   }
+
+  public getUserId(): string{
+    const item: string | any = sessionStorage.getItem("id_token_claims_obj");
+    const parse = JSON.parse(item);
+    const userId:string = parse['sub'];
+    console.log(userId);
+    return userId;
+  }
 }

@@ -1,14 +1,195 @@
-table {
+.demo-inline-calendar-card {
+  width: 300px;
+}
+.center-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  border-collapse: collapse;
+  height: 100%;
+}
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mat-calendar{
+  background-color: khaki;
+}
+.example-card {
+  max-width: 400px;
+}
+/*Card style*/
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+/* Design */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+html {
+  background-color: #ecf9ff;
 }
 
-th {
+body {
+  color: #272727;
+  font-family: 'Quicksand', serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 1rem;
+}
+
+.main{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.btn {
+  color: #ffffff;
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 25%;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card_content {
+  padding: 1rem;
+  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+}
+
+.card_title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.card_text {
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 0.1rem;
+  font-weight: 400;
+}
+
+
+/*lista de especialidades*/
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+/*css para las horas*/
+.card-time {
+  width: calc(20% - 16px);
+  max-width: max-content;
+  /*height: 300px;*/
   background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  display: flex;
+}
+.card-container-time {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: flex-start;
+}
+@media (max-width: 768px) {
+  .card-time {
+    width: calc(50% - 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-time {
+    width: 100%;
+  }
+}
+/*estilo para titulos*/
+.titulo{
+  font-family: inherit;
+  line-height: 1.1;
+  font-size: 30px;
+  color: #4a1162;
+  text-align: center;
+  box-sizing: border-box;
+  /*display: inline-block;*/
+  /*max-width: 100%;*/
+  /*margin-bottom: 5px;*/
+  margin-top: 10px;
+  font-weight: 700;
 }
