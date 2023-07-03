@@ -1,22 +1,19 @@
 <h2 class="titulo">RESERVAR CITA</h2>
 <br>
 <div class="center">
-  <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Especialidades</mat-label>
-      <input type="text"
-             placeholder="Seleccione una especialidad"
-             aria-label="Number"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+
+  <mat-form-field>
+    <mat-label>Seleccione una Especialidad</mat-label>
+    <mat-select [(value)]="option" >
+      <mat-option>Seleccionar:</mat-option>
+      <mat-option value="pediatria" (click)="getEspecialidad()">Pediatría</mat-option>
+      <mat-option value="ginecologia" (click)="getEspecialidad()">Ginecología</mat-option>
+      <mat-option value="traumatologia" (click)="getEspecialidad()">Traumatología</mat-option>
+      <mat-option value="medicina general" (click)="getEspecialidad()">Medicina General</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<!--  <p>You selected: {{option}}</p>-->
 </div>
 
 <br>
@@ -30,12 +27,12 @@
 <div class="main">
 <!--  <h1>Doctores Disponibles</h1>-->
   <ul class="cards">
-    <li class="cards_item" *ngFor="let i of [1,2,3,4,5,6]">
+    <li class="cards_item" *ngFor="let i of medicos">
       <div class="card">
         <div class="card_image"><img src="https://t4.ftcdn.net/jpg/00/96/79/23/360_F_96792385_uNo7a5isquPQWohvBpxpGIxnNGCvmvhX.jpg"></div>
         <div class="card_content">
           <h2 class="card_title">Doctor</h2>
-          <p class="card_text">Manuel Juan Ramos Perez</p>
+          <p class="card_text">{{ i.first_NAME }} {{i.last_NAME}}</p>
           <div class="center">
             <button mat-raised-button color="accent">
               <i class="far fa-clock"></i>   Horario

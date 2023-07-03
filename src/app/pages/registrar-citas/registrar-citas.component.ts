@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
+import {CitaService} from "../../services/cita.service";
+import {MedicosByEspecialidad} from "../../models/medicos-by-especialidad";
 
 @Component({
   selector: 'app-registrar-citas',
@@ -10,28 +9,48 @@ import {map, startWith} from "rxjs/operators";
 })
 export class RegistrarCitasComponent implements OnInit{
   selected: Date | null | undefined;
-  fecha?: string;
+  fecha: string='';
+  option:string = '';
+  medicos!: MedicosByEspecialidad[];
 
-  myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three','cuatro'];
-  filteredOptions?: Observable<string[]>;
+  constructor(
+    private citaService: CitaService,
+  ) {
+  }
 
   ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
   }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+
+  getEspecialidad():string{
+    console.log(this.option);
+    return this.option;
   }
-  getFecha():void{
+
+  getFecha():string{
     let date = this.selected?.getDate();
     let year = this.selected?.getFullYear();
-    let month = this.selected?.getMonth()!=null? this.selected?.getMonth()+1 : null;
-    this.fecha=`${date}/${month}/${year}`;
+    let month:number | null = this.selected?.getMonth()!=null? this.selected?.getMonth()+1 : null;
+    // @ts-ignore
+    if(month < 10){
+      this.fecha=`${year}-0${month}-${date}`;
+    }else {
+    this.fecha=`${year}-${month}-${date}`;
+    }
     console.log(this.fecha);
+    this.getMedicos();
+    return this.fecha;
+  }
+
+  getMedicos(): void{
+    if(this.option!='' && this.fecha!=''){
+      this.citaService.listMedicos(this.option,this.fecha).
+      subscribe({
+        next: data =>{
+          console.log(data);
+          this.medicos=data;
+        }
+      })
+    }
   }
 
 
