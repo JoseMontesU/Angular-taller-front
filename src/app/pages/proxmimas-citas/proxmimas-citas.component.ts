@@ -54,9 +54,17 @@ const NAMES: string[] = [
 })
 export class ProxmimasCitasComponent implements  OnInit {
 
-  displayedColumns: string[] = ['id', 'especialidad', 'medicoId', 'date', 'hour'];
+  displayedColumns: string[] = ['id', 'especialidad', 'medicoId', 'date', 'hour','diagnostico'];
   dataSource!: MatTableDataSource<Cita>;
-  citas: Cita[] = [];
+  citas: Cita[] = [
+    {id:"1",especialidad:"Traumatología", medicoId:"Juan Perez Ramos",date:"03-03-2023",hour:"9:00 AM",pacienteId:"1", diagnostico:"Escoliosis o columna desviada"},
+    {id:"2",especialidad:"Medicina General", medicoId:"Raul Matos Rios",date:"15-03-2023",hour:"10:00 AM",pacienteId:"1", diagnostico:"Bronquitis"},
+    {id:"3",especialidad:"Cardiología", medicoId:"Ana Rodriguez Perales",date:"15-04-2023",hour:"9:30 AM",pacienteId:"1", diagnostico:"Presión arterial alta"},
+    {id:"4",especialidad:"Traumatología", medicoId:"Juan Perez Ramos",date:"02-05-2023",hour:"10:00 AM",pacienteId:"1", diagnostico:"Lumbalgia"},
+    {id:"5",especialidad:"Medicina General", medicoId:"Raul Matos Rios",date:"15-05-2023",hour:"9:00 AM",pacienteId:"1", diagnostico:"Influenza"},
+    {id:"6",especialidad:"Medicina General", medicoId:"Raul Matos Rios",date:"05-06-2023",hour:"9:30 AM",pacienteId:"1", diagnostico:"Infeccion de la piel"},
+    {id:"7",especialidad:"Cardiología", medicoId:"Ana Rodriguez Perales",date:"18-06-2023",hour:"10:00 AM",pacienteId:"1", diagnostico:"Insuficiencia cardiaca"},
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -65,13 +73,16 @@ export class ProxmimasCitasComponent implements  OnInit {
   }
 
   ngOnInit() {
-    this.citaService.list().subscribe(data => {
-      this.citas = data;
-      console.log(this.citas);
+    // this.citaService.list().subscribe(data => {
+    //   this.citas = data;
+    //   console.log(this.citas);
+    //   this.dataSource = new MatTableDataSource(this.citas);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    // });
       this.dataSource = new MatTableDataSource(this.citas);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    });
   }
 
   applyFilter(event: Event) {

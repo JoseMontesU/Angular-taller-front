@@ -1,41 +1,52 @@
 <h2 class="titulo">RESERVAR CITA</h2>
-<br>
+<br />
 <div class="center">
-
   <mat-form-field>
     <mat-label>Seleccione una Especialidad</mat-label>
-    <mat-select [(value)]="option" >
+    <mat-select [(value)]="option">
       <mat-option>Seleccionar:</mat-option>
-      <mat-option value="pediatria" (click)="getEspecialidad()">Pediatría</mat-option>
-      <mat-option value="ginecologia" (click)="getEspecialidad()">Ginecología</mat-option>
-      <mat-option value="traumatologia" (click)="getEspecialidad()">Traumatología</mat-option>
-      <mat-option value="medicina general" (click)="getEspecialidad()">Medicina General</mat-option>
+      <mat-option value="pediatria" (click)="getEspecialidad()"
+        >Pediatría</mat-option
+      >
+      <mat-option value="ginecologia" (click)="getEspecialidad()"
+        >Ginecología</mat-option
+      >
+      <mat-option value="traumatologia" (click)="getEspecialidad()"
+        >Traumatología</mat-option
+      >
+      <mat-option value="medicina general" (click)="getEspecialidad()"
+        >Medicina General</mat-option
+      >
     </mat-select>
   </mat-form-field>
 
-<!--  <p>You selected: {{option}}</p>-->
+  <!--  <p>You selected: {{option}}</p>-->
 </div>
 
-<br>
+<br />
 <div class="center">
   <mat-card class="demo-inline-calendar-card">
-    <mat-calendar [(selected)]="selected" (click)="getFecha()" ></mat-calendar>
+    <mat-calendar [(selected)]="selected" (click)="getFecha()"></mat-calendar>
   </mat-card>
 </div>
 <!--<p>Selected date: {{fecha}}</p>-->
 
 <div class="main">
-<!--  <h1>Doctores Disponibles</h1>-->
+  <!--  <h1>Doctores Disponibles</h1>-->
   <ul class="cards">
     <li class="cards_item" *ngFor="let i of medicos">
       <div class="card">
-        <div class="card_image"><img src="https://t4.ftcdn.net/jpg/00/96/79/23/360_F_96792385_uNo7a5isquPQWohvBpxpGIxnNGCvmvhX.jpg"></div>
+        <div class="card_image">
+          <img
+            src="https://t4.ftcdn.net/jpg/00/96/79/23/360_F_96792385_uNo7a5isquPQWohvBpxpGIxnNGCvmvhX.jpg"
+          />
+        </div>
         <div class="card_content">
           <h2 class="card_title">Doctor</h2>
-          <p class="card_text">{{ i.first_NAME }} {{i.last_NAME}}</p>
+          <p class="card_text">{{ i.first_NAME }} {{ i.last_NAME }}</p>
           <div class="center">
             <button mat-raised-button color="accent">
-              <i class="far fa-clock"></i>   Horario
+              <i class="far fa-clock"></i> Horario
             </button>
           </div>
         </div>
@@ -45,17 +56,47 @@
 </div>
 <h2 class="titulo">Horarios disponibles</h2>
 <div class="card-container-time">
-  <div class="card-time" *ngFor="let i of [1,2,3,4,5,6,7]">
+  <div class="card-time">
     <mat-card>
       <button mat-raised-button color="primary">9:00 AM</button>
     </mat-card>
   </div>
+  <div class="card-time">
+    <mat-card>
+      <button mat-raised-button color="primary">9:30 AM</button>
+    </mat-card>
+  </div>
+  <div class="card-time">
+    <mat-card>
+      <button mat-raised-button color="primary">10:00 AM</button>
+    </mat-card>
+  </div>
+  <div class="card-time">
+    <mat-card>
+      <button mat-raised-button color="primary">10:30 AM</button>
+    </mat-card>
+  </div>
+  <div class="card-time">
+    <mat-card>
+      <button mat-raised-button color="primary">11:00 AM</button>
+    </mat-card>
+  </div>
+  <div class="card-time">
+    <mat-card>
+      <button mat-raised-button color="primary">11:30 AM</button>
+    </mat-card>
+  </div>
+  <div class="card-time">
+    <mat-card>
+      <button mat-raised-button color="primary">12:00 AM</button>
+    </mat-card>
+  </div>
 </div>
 
-<br>
+<br />
 <div class="center">
   <button mat-raised-button color="warn">
-    <i class="fas fa-calendar-check"></i>   RESERVAR
+    <i class="fas fa-calendar-check"></i> RESERVAR
   </button>
 </div>
-<br>
+<br />

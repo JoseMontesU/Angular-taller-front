@@ -11,7 +11,11 @@ export class RegistrarCitasComponent implements OnInit{
   selected: Date | null | undefined;
   fecha: string='';
   option:string = '';
-  medicos!: MedicosByEspecialidad[];
+  medicos: MedicosByEspecialidad[] = [
+    {user_id: "1", first_NAME:"Juan", last_NAME:"Perez Ramos"},
+    {user_id: "2", first_NAME:"Raul", last_NAME:"Matos Rios"},
+    {user_id: "3", first_NAME:"Sergio", last_NAME:"Valdiviezo Tisnado"},
+  ];
 
   constructor(
     private citaService: CitaService,
